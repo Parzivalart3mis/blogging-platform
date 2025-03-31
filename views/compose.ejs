@@ -36,9 +36,10 @@
             </p>
             <p class="post-content">
                 <textarea cols="30" rows="20" name="postBody"></textarea>
-            </p>
-                <input type="file" class="custom-file-input" name="image">
-            </p>
+                <div class="custom-file-input">
+                    <input type="file" name="image" id="thumbnailInput">
+                    <div class="file-name-display" id="fileNameDisplay">No file selected</div>
+                </div>
             <p class="submit-button">
                 <input type="submit" value="Publish">
                 <input type="reset" value="Discard">
@@ -48,3 +49,16 @@
     </main>
 </body>
 </html>
+
+
+<script>
+    // Display selected filename
+    document.getElementById('thumbnailInput').addEventListener('change', function() {
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (this.files.length > 0) {
+            fileNameDisplay.textContent = this.files[0].name;
+        } else {
+            fileNameDisplay.textContent = 'No file selected';
+        }
+    });
+</script>
