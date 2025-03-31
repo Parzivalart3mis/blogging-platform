@@ -134,13 +134,22 @@ app.get("/home", async (req, res) => {
     }
 });
 
-app.post("/clear-notifications", (req, res) => {
-    // Assuming `req.session.notifications` stores notifications
-    req.session.notifications = [];
-
-    // Respond with success
-    res.json({ success: true });
+app.post("/clear-notifications", async (req, res) => {
+    try {
+        const updatedProfile = await Profile.findOneAndUpdate(
+            { email: req.session.useremail },
+            { notifications: [] },
+            { new: true }
+        );
+        req.session.notifications = updatedProfile.notifications; // update session notifications
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Error clearing notifications:", error);
+        res.json({ success: false, error: error.message });
+    }
 });
+
+
 
 app.get("/", (req, res) => {
     res.render("login");

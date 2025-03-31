@@ -1,0 +1,300 @@
+/* public/css/subscription-style.css */
+:root {
+    --primary: #6366F1;
+    --primary-dark: #4F46E5;
+    --secondary: #10B981;
+    --secondary-dark: #059669;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --bg-light: #F9FAFB;
+    --bg-white: #FFFFFF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Page Header Styling */
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 2rem 0;
+    color: var(--primary);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 50px;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Subscription Form Container */
+.subscription-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.5s ease;
+    transform-origin: top center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.08);
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+button[type="submit"] {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+button[type="submit"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Subscription Items */
+.subscription-item {
+    max-width: 600px;
+    margin: 1rem auto;
+    background: var(--bg-white);
+    padding: 1.2rem 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    animation: slideIn 0.3s ease-out forwards;
+    transform: translateX(-10px);
+    opacity: 0;
+    animation-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+@keyframes slideIn {
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.subscription-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.subscription-item span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.unsubscribe-form button {
+    background: transparent;
+    color: #EF4444;
+    border: 1px solid #EF4444;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.unsubscribe-form button:hover {
+    background: #FEE2E2;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+p {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 2rem 0;
+}
+
+/* Back to Home Link */
+a[href="/home"] {
+    display: block;
+    text-align: center;
+    margin: 3rem auto 1rem;
+    width: fit-content;
+    padding: 0.8rem 1.8rem;
+    background: var(--secondary);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+a[href="/home"]:hover {
+    background: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
+}
+
+a[href="/home"]::before {
+    content: '← ';
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .subscription-container {
+        padding: 1.5rem;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .subscription-item {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .unsubscribe-form {
+        width: 100%;
+    }
+
+    .unsubscribe-form button {
+        width: 100%;
+    }
+}
+
+/* Improved Appearance for the Topic Tags */
+.subscription-item span {
+    background-color: rgba(99, 102, 241, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--primary);
+    display: inline-block;
+}
+
+/* Animation for New Items */
+.subscription-item:nth-child(1) { --item-index: 1; }
+.subscription-item:nth-child(2) { --item-index: 2; }
+.subscription-item:nth-child(3) { --item-index: 3; }
+.subscription-item:nth-child(4) { --item-index: 4; }
+.subscription-item:nth-child(5) { --item-index: 5; }
+.subscription-item:nth-child(n+6) { --item-index: 6; }
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-light: #111827;
+        --bg-white: #1F2937;
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --primary: #818CF8;
+        --primary-dark: #6366F1;
+    }
+
+    body {
+        background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+    }
+
+    input[type="text"] {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.08);
+        color: var(--text-primary);
+    }
+
+    .subscription-item span {
+        background-color: rgba(129, 140, 248, 0.2);
+    }
+
+    .unsubscribe-form button {
+        color: #F87171;
+        border-color: #F87171;
+    }
+
+    .unsubscribe-form button:hover {
+        background: rgba(248, 113, 113, 0.2);
+    }
+}
