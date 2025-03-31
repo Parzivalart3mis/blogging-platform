@@ -7,7 +7,7 @@ async function main() {
         "mongodb+srv://arjuncvinod:gdozFKJP7i12I87s@cluster0.yjxy0xp.mongodb.net/todoListDB",
         { useNewUrlParser: true }
     );
-    // mongoose.connect("mongodb://127.0.0.1:27017/myblog") for local DB
+    // mongoose.connect("mongodb://127.0.0.1:27017/CampusNexus") for local DB
     console.log("post connected");
 }
 main()
