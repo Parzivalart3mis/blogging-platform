@@ -22,8 +22,12 @@
                     <label for="">Bio</label>
                     <textarea id="" cols="30" rows="10" name="bio"><%=userdata.bio%></textarea>
                     <label for="">Profile Picture</label>
-                    <input type="file" class="custom-file-input" name="image">
-                 </div>
+                    <!-- Replace your current file input with this -->
+                    <div class="custom-file-input">
+                        <input type="file" name="image" id="thumbnailInput">
+                        <div class="file-name-display" id="fileNameDisplay">No file selected</div>
+                    </div>
+                </div>
 
                 <div>
                     <label for="">Website Link</label>
@@ -49,3 +53,30 @@
     
 </body>
 </html>
+
+<script>
+    document.querySelector('.custom-file-input').addEventListener('change', function() {
+        const fileName = this.value.split('\\').pop();
+        let fileDisplay = document.querySelector('.file-name-display');
+
+        if (!fileDisplay) {
+            fileDisplay = document.createElement('div');
+            fileDisplay.className = 'file-name-display';
+            this.parentNode.insertBefore(fileDisplay, this.nextSibling);
+        }
+
+        fileDisplay.textContent = fileName || 'No file selected';
+    });
+</script>
+
+<script>
+    // Display selected filename
+    document.getElementById('thumbnailInput').addEventListener('change', function() {
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        if (this.files.length > 0) {
+            fileNameDisplay.textContent = this.files[0].name;
+        } else {
+            fileNameDisplay.textContent = 'No file selected';
+        }
+    });
+</script>

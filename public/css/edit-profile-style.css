@@ -1,142 +1,336 @@
+/* public/css/edit-profile-style.css */
 :root {
-  --uiclr: #009d84;
-  --white: #e4e9fd;
-  --black: #040c0e;
-  --light-black: rgb(53, 50, 50);
+    --primary: #6366F1;
+    --primary-dark: #4F46E5;
+    --secondary: #10B981;
+    --secondary-dark: #059669;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --bg-light: #F9FAFB;
+    --bg-white: #FFFFFF;
+    --error: #EF4444;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --transition: all 0.3s ease;
 }
+
 * {
-  margin: 0;
-  padding: 0;
-  font-family: Arial;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body{
-    background-color: var(--white);
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
 }
-main{
-    width: 100%;
-    height: 100vh;
-    /* background:linear-gradient( 5deg,rgb(230, 235, 235),var(--uiclr)) ; */
-    background-color: var(--white);
+
+/* Main Layout */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Edit Profile Container */
+.edit-container {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 2.5rem;
+    animation: fadeIn 0.5s ease;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.edit-container h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.edit-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 50px;
+}
+
+/* Form Layout */
+.forms-container {
     display: grid;
-    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
 }
-.edit-container{
-    width: 70%;
-    /* height: 80%; */
-    background-color: white;
+
+.forms-container > div {
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 0px 20px rgb(190, 190, 190);
-    border-radius: 8px;
 }
-.edit-container h1{
-    margin: 20px;
-    margin-bottom: 0;
-    color: var(--light-black);
+
+/* Form Elements */
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
 }
-.forms-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* background-color: red; */
-    height: 100%;
-    justify-content: space-around;
-}
-.forms-container div{
-    width: 45%;
-    /* background-color:beige; */
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-/* .forms-container div:nth-child(1){
-    background-color: aqua;
-} */
-.forms-container input[type="text"]{
-    height:40px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border:2px solid rgb(197, 194, 194) ;
-    outline:none;
-    border-radius: 8px;
-    transition: .3s;
-}
-.forms-container input[type="text"]:focus{
-    border-color: var(--uiclr);
-}
-.forms-container textarea{
-    margin-top: 5px;
-    margin-bottom: 10px;
-     border:2px solid rgb(197, 194, 194);
-    outline:none;
-    border-radius: 8px;
-    transition: .3s;
-}
-.forms-container textarea:focus{
-    border-color: var(--uiclr);
-}
-.forms-container label{
-    font-size: 0.8rem;
-    font-weight: bold;
-    color:rgb(84, 84, 84);
-    margin-left: 2px;
-}
-.forms-container .buttons{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-}
-.buttons input{
-    padding: 8px 20px;
-    margin-right: 20px;
+
+input[type="text"],
+textarea {
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.1);
     font-size: 1rem;
-    border-radius: 8px;
-    border: none;
-    color: white;
-    transition: .3s;
-}
-.buttons input[type="reset"]{
-    background-color: red;
-}
-.buttons input[type="submit"]{
-    background-color:  #00af34c7;
-}
-.buttons input[type="reset"]:hover{
-    background-color: rgb(219, 1, 1);
-}
-.buttons input[type="submit"]:hover{
-    background-color:  #00af34f6;
+    transition: var(--transition);
+    font-family: inherit;
+    background: var(--bg-light);
 }
 
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
 
+/* Read-only inputs */
+input[readonly] {
+    background: rgba(0,0,0,0.03);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Custom File Input */
 .custom-file-input {
-  margin: 1% 0;
-  width: 70%;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin: 0.5rem 0;
 }
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-}
+
 .custom-file-input::before {
-  content: "Upload image";
-  display: inline-block;
-  background: #00af34c7;
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  /* text-shadow: 1px 1px #fff; */
-  font-weight: 700;
-  font-size: 10pt;
-  color: white;
-  transition: .3s;
+    content: 'Choose Profile Photo';
+    display: inline-block;
+    background: var(--bg-light);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius);
+    padding: 0.8rem 1.5rem;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: var(--transition);
 }
+
 .custom-file-input:hover::before {
-  background-color:#038b2bc7 ;
+    background: var(--primary);
+    color: white;
 }
+
 .custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    background: var(--primary-dark);
 }
+
+/* Button Container */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end;
+}
+
+/* Button Styling */
+input[type="submit"],
+input[type="reset"] {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: capitalize;
+}
+
+input[type="submit"] {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+input[type="submit"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+}
+
+input[type="reset"] {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--text-secondary);
+}
+
+input[type="reset"]:hover {
+    background: rgba(0,0,0,0.05);
+    color: var(--error);
+    border-color: var(--error);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    .edit-container {
+        padding: 1.5rem;
+    }
+
+    .forms-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .edit-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .buttons {
+        flex-direction: column-reverse;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-light: #111827;
+        --bg-white: #1F2937;
+        --text-primary: #F9FAFB;
+        --text-secondary: #D1D5DB;
+        --primary: #818CF8;
+        --primary-dark: #6366F1;
+    }
+
+    body {
+        background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+    }
+
+    input[type="text"],
+    textarea {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.08);
+        color: var(--text-primary);
+    }
+
+    input[readonly] {
+        background: rgba(0,0,0,0.3);
+    }
+
+    .custom-file-input::before {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.08);
+        color: var(--text-secondary);
+    }
+
+    input[type="reset"] {
+        color: var(--text-secondary);
+        border-color: var(--text-secondary);
+    }
+
+    input[type="reset"]:hover {
+        background: rgba(255,255,255,0.1);
+    }
+}
+
+/* File name display for better UX with file uploads */
+.file-name-display {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Improved File Upload Styling */
+.custom-file-input {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+/* Hide the default file input */
+.custom-file-input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Create custom upload button */
+.custom-file-input::before {
+    content: 'Upload Thumbnail';
+    display: inline-block;
+    background: var(--bg-light);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius);
+    padding: 0.8rem 1.5rem;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.custom-file-input:hover::before {
+    background: var(--primary);
+    color: white;
+}
+
+.custom-file-input:active::before {
+    background: var(--primary-dark);
+}
+
+/* File name display */
+.file-name-display {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
