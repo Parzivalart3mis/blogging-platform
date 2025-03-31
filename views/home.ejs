@@ -31,8 +31,14 @@
 
 <nav>
     <div class="logo"><a href="/home">CampusNexus</a></div>
-    <div class="search">
-        <!-- Search form remains the same -->
+    <div class="search" >
+        <form action="">
+            <input type="text" onkeyup="sendData(this)" id="search" placeholder="Search articles">
+            <button type="reset" class="reset-btn"  id="reset-btn" onclick="sendData(this)"><i class="fa-solid fa-xmark"></i> </button>
+        </form>
+        <div class="results" id="searchDiv">
+
+        </div>
     </div>
 
     <div class="nav-items">
