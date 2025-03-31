@@ -74,17 +74,39 @@
         </div>
     </main>
     <script>
-        function login(){
-            document.getElementById("register").style.display="none"
-             document.getElementById("login").style.display=""
+        // Replace your current script with this
+        document.addEventListener("DOMContentLoaded", function() {
+            // Toggle functions for switching between login and register forms
+            window.login = function() {
+                document.getElementById("register").style.display = "none";
+                document.getElementById("login").style.display = "block";
+            }
 
-        }
-        function register(){
-            document.getElementById("register").style.display=""
-            document.getElementById("login").style.display="none"
+            window.register = function() {
+                document.getElementById("register").style.display = "block";
+                document.getElementById("login").style.display = "none";
+            }
 
+            // Make sure forms are actually submitting
+            const loginForm = document.querySelector("#login form");
+            const registerForm = document.querySelector("#register form");
 
-        }
+            // Add event listeners to monitor form submission
+            if (loginForm) {
+                loginForm.addEventListener("submit", function(e) {
+                    console.log("Login form is submitting");
+                    // You can add validation here if needed
+                });
+            }
+
+            if (registerForm) {
+                registerForm.addEventListener("submit", function(e) {
+                    console.log("Register form is submitting");
+                    // You can add validation here if needed
+                });
+            }
+        });
+
     </script>
 </body>
 </html>
